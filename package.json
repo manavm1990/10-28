@@ -13,6 +13,7 @@
     "vitest": "^0.25.3"
   },
   "dependencies": {
+    "chalk": "^5.2.0",
     "inquirer": "^9.1.4"
   }
 }
