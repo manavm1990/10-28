@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import Letter from "../app/models/Letter";
 
 it("Characters that aren't digits or letters are instantly visible", () => {
-  expect(new Letter("?").visible).toBe(true);
+  expect(new Letter("?").isVisible).toBe(true);
 });
 
 it("toString returns _ for letters", () => {
@@ -21,18 +21,18 @@ describe("guess", () => {
 
 describe("getSolution", () => {
   it("returns character", () => {
-    expect(new Letter("l").getSolution()).toBe("l");
+    expect(new Letter("l").char).toBe("l");
   });
 });
 
 describe("Visibility", () => {
   it("Characters that are digits or letters should not be visible", () => {
-    expect(new Letter("j").visible).toBe(false);
+    expect(new Letter("j").isVisible).toBe(false);
   });
 
   it("Correct guess makes character visible", () => {
     const letter = new Letter("j");
-    const { visible } = letter;
+    const { isVisible: visible } = letter;
 
     // Correct guess
     letter.guess("j");
@@ -41,12 +41,12 @@ describe("Visibility", () => {
     expect(visible).toBe(false);
 
     // Letter is now visible
-    expect(letter.visible).toBe(true);
+    expect(letter.isVisible).toBe(true);
   });
 
   it("Incorrect guess does not make character visible", () => {
     const letter = new Letter("j");
-    const { visible } = letter;
+    const { isVisible: visible } = letter;
 
     // Incorrect guess
     letter.guess("l");
@@ -55,7 +55,7 @@ describe("Visibility", () => {
     expect(visible).toBe(false);
 
     // Letter is still not visible
-    expect(letter.visible).toBe(false);
+    expect(letter.isVisible).toBe(false);
   });
 
   it("Should return the guessed character when using toString", () => {
